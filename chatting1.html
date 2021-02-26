@@ -1,0 +1,88 @@
+<!DOCTYPE html><html>
+    <head>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyARIOI79plhdJDF6xvF6L0l4X9ypxHnLC0",
+    authDomain: "chatting-a-a40dc.firebaseapp.com",
+    databaseURL: "https://chatting-a-a40dc-default-rtdb.firebaseio.com",
+    projectId: "chatting-a-a40dc",
+    storageBucket: "chatting-a-a40dc.appspot.com",
+    messagingSenderId: "1034480113105",
+    appId: "1:1034480113105:web:5e9c7acded911e64dc3cf0"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+        </head>
+        <body align='center'>
+            <style>
+                body{
+                    background-color: blue;
+                    color:rgb(0, 0, 0);
+                }
+                input{
+                    border:none;
+                    padding:13px 20px;
+                    background-color: cyan;
+                }
+                button{
+                    border: none;
+                    padding: 14px 20px;
+                    color:darkred;
+                    background-color: floralwhite;
+                }
+                div{
+                    background-color:lightblue;
+                }
+                </style>
+            <script>
+                let database=firebase.database()
+                function fill_database(){
+                let userref = 'Users/'+document.getElementById('login').value
+                database.ref(userref).update({
+                    name:document.getElementById('login').value,
+                })
+            }
+                referenceUser = function(){
+                    var a=database.ref('Users/'+document.getElementById('username').value)
+                    a.on('value',(data)=>{
+                        b=data.val()
+                    })
+                }
+                fill_username=function(){
+                    let loginref=database.ref('Users/'+document.getElementById('login').value)
+                    loginref.on('value',function (data){
+                        document.getElementById('username').value=data.val().name
+                    })
+                }
+                
+                send_letter=function(){
+                    database.ref('Users/'+document.getElementById('target').value).update({
+                        'message':document.getElementById('letter').value
+                    })
+                }
+                retrieve_letter=function(){
+                    let letterref=database.ref('Users/'+document.getElementById('login').value)
+                    letterref.on('value',(data)=>{
+                        document.getElementById('letter_got').value=data.val().message
+                    })
+                }
+                </script>
+                <div align='left'>
+            <input type='text' id='login' name='login'><br><br><input type='text' id='username'> <br>
+            <button onclick='fill_database(),fill_username(),referenceUser()'>Log in</button><br><br>
+                    </div><br>
+            <input type='text' id='target' placeholder="target"><br><br>
+            <textarea rows='20' cols=35 id='letter'></textarea><br><br>
+            <button onclick='send_letter()'>Send letter</button><br><br>
+            <textarea rows='20' cols=35 id='letter_got'></textarea><br><br>
+            <button onclick='retrieve_letter()'>Show recieved letter</button>
+            </body>
+    </html>
