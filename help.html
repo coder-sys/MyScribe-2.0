@@ -1,0 +1,72 @@
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCf7DrCaU5tkwqsKRfu7rNC-6dzt1q4Od8",
+    authDomain: "myscribe-data.firebaseapp.com",
+    databaseURL: "https://myscribe-data-default-rtdb.firebaseio.com",
+    projectId: "myscribe-data",
+    storageBucket: "myscribe-data.appspot.com",
+    messagingSenderId: "56781502554",
+    appId: "1:56781502554:web:842949eb24ee0d8be84063"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+<div align='center'>
+<label>Name</label><br>
+<input type='text' id='name'> <input type='text' id='lastname'><br><br>
+<label>Email</label><br>
+<input type='email' id='email'><br><br>
+<label for="Problem">Problem</label><br>
+<textarea id='Problem' name='Problem' rows='20' cols='70'></textarea><br><br>
+<style>
+    button{
+        background-color: black;
+    }
+    body{
+      background-color: black;
+    }
+    label{
+      color:cornsilk
+    }
+    </style>
+  <script>
+  let database=firebase.database()
+  let choice1 = document.getElementById('teacher')
+  let choice2 = document.getElementById('student')
+  let choice3 = document.getElementById('teacherandstudent')
+  fill_database=function(){
+
+  database.ref('Users/'+document.getElementById('name').value).set({
+  name:document.getElementById('name').value,
+  lastname:document.getElementById('lastname').value,
+  email:document.getElementById('email').value,
+  Complaint:document.getElementById('Problem').value
+  })
+}
+</script>
+<style>
+  button{
+    border:none;
+    padding:13px 15px;
+    text-decoration:underline;
+    background-color:rgb(0, 136, 255)
+  }
+  </style>
+  <script>
+    function changeUderline(event){
+      if(event.clientX>=26){
+        document.getElementById('submit').style.textDecoration = 'none'
+      }
+    }
+    </script>
+<button id='submit'onclick='fill_database(),changeUderline(event)'>Submit</button>
+</div>

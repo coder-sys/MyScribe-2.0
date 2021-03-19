@@ -1,21 +1,22 @@
 <!DOCTYPE html><html>
     <head>
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
 <script>
   // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyARIOI79plhdJDF6xvF6L0l4X9ypxHnLC0",
-    authDomain: "chatting-a-a40dc.firebaseapp.com",
-    databaseURL: "https://chatting-a-a40dc-default-rtdb.firebaseio.com",
-    projectId: "chatting-a-a40dc",
-    storageBucket: "chatting-a-a40dc.appspot.com",
-    messagingSenderId: "1034480113105",
-    appId: "1:1034480113105:web:5e9c7acded911e64dc3cf0"
+    apiKey: "AIzaSyCf7DrCaU5tkwqsKRfu7rNC-6dzt1q4Od8",
+    authDomain: "myscribe-data.firebaseapp.com",
+    databaseURL: "https://myscribe-data-default-rtdb.firebaseio.com",
+    projectId: "myscribe-data",
+    storageBucket: "myscribe-data.appspot.com",
+    messagingSenderId: "56781502554",
+    appId: "1:56781502554:web:842949eb24ee0d8be84063"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
@@ -24,13 +25,13 @@
         <body align='center'>
             <style>
                 body{
-                    background-color: blue;
+                    background-color: rgb(0, 0, 0);
                     color:rgb(0, 0, 0);
                 }
                 input{
                     border:none;
                     padding:13px 20px;
-                    background-color: cyan;
+                    background-color: rgb(255, 0, 0);
                 }
                 button{
                     border: none;
@@ -39,11 +40,11 @@
                     background-color: floralwhite;
                 }
                 div{
-                    background-color:lightblue;
+                    background-color:rgb(0, 0, 0);
                 }
-                </style>
-            <script>
-                let database=firebase.database()
+          </style>
+          <script>
+                   let database=firebase.database()
                 function fill_database(){
                 let userref = 'Users/'+document.getElementById('login').value
                 database.ref(userref).update({
@@ -74,15 +75,46 @@
                         document.getElementById('letter_got').value=data.val().message
                     })
                 }
-                </script>
+              </script>
+                <style>
+                    #header li{
+                        float:left;
+                        display: inline-block;
+                        color:aliceblue
+                    }
+                    #headder li{
+                        display:inline-block;
+                        float:right;
+                    }
+                    .font{
+                        color:white
+                    }
+                    </style>
+                    <header>
+                <ul id='header'>
+                    <li><a href='signin.html'><button>Sign in</button></a></li>
+                    </ul>
+                    <ul id='headder'>
+                        <li id='li'><a href='help.html'><button>Need Help</button></a></li>
+                    </ul>
+                    <img src='logo.jpeg.jfif' >
+                    </header><br><br><br>
                 <div align='left'>
-            <input type='text' id='login' name='login'><br><br><input type='text' id='username'> <br>
-            <button onclick='fill_database(),fill_username(),referenceUser()'>Log in</button><br><br>
-                    </div><br>
+            <input type='text' id='login' placeholder="login" name='login'><br><br><input type='text' id='username'> <br>
+            <button onclick='fill_database(),fill_username()'>Log in</button><br><br>
+                    </div>
+                    
+                    <br>
             <input type='text' id='target' placeholder="target"><br><br>
             <textarea rows='20' cols=35 id='letter'></textarea><br><br>
             <button onclick='send_letter()'>Send letter</button><br><br>
             <textarea rows='20' cols=35 id='letter_got'></textarea><br><br>
-            <button onclick='retrieve_letter()'>Show recieved letter</button>
+            <button onclick='retrieve_letter()'>Show recieved letter</button><br>
+            <br>
+            <footer>
+                <ul id='header'>
+                    <h2><font color='white'>Enjoy Contacting with your friends</font></h2>
+                    </ul>
+                </footer>
             </body>
     </html>
